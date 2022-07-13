@@ -1,0 +1,15 @@
+version: "2.1"
+services:
+  qemu-reactos:
+    image: docker.io/hectormolinero/qemu-reactos:latest
+    container_name: qemu-reactos
+    environment:
+      - device=/dev/kvm
+      - publish=127.0.0.1:5900:5900/tcp
+      - publish=127.0.0.1:6080:6080/tcp
+    volumes:
+      - /config:/config
+      - /config/workspace:/config/workspace
+    ports:
+      - 6080:6080
+    restart: unless-stopped
